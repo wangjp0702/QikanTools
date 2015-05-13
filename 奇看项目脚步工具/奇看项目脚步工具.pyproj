@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>c889e387-9f42-47dd-b247-7ded537ee002</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>奇看项目脚步工具.py</StartupFile>
+    <StartupFile>tt.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -24,6 +24,12 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="HttpHandle.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="tt.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="奇看项目脚步工具.py" />
   </ItemGroup>
   <ItemGroup>
