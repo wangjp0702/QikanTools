@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "奇看项目脚步工具", "奇看项目脚步工具\奇看项目脚步工具.pyproj", "{C889E387-9F42-47DD-B247-7DED537EE002}"
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "奇看项目脚本工具", "奇看项目脚步工具\奇看项目脚本工具.pyproj", "{C889E387-9F42-47DD-B247-7DED537EE002}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
