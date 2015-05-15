@@ -6,7 +6,7 @@
     <ProjectGuid>c889e387-9f42-47dd-b247-7ded537ee002</ProjectGuid>
     <ProjectHome>
     </ProjectHome>
-    <StartupFile>tt.py</StartupFile>
+    <StartupFile>批量注册.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -32,6 +32,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="奇看项目脚本工具.py" />
+    <Compile Include="批量注册.py">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <InterpreterReference Include="{9a7a9026-48c1-4688-9d5d-e5699d47d074}\3.4" />
