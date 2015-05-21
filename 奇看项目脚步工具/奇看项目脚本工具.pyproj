@@ -6,7 +6,7 @@
     <ProjectGuid>c889e387-9f42-47dd-b247-7ded537ee002</ProjectGuid>
     <ProjectHome>
     </ProjectHome>
-    <StartupFile>批量处理图片.py</StartupFile>
+    <StartupFile>批量注册.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>

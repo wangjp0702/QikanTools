@@ -1,11 +1,12 @@
 import hashlib, hmac,json, urllib.request
-import HttpHandle,time
+import HttpHandle,time,sys
+sys.getdefaultencoding('utf-8')
 url ='http://localhost:8080/register'
 urluser='http://localhost:8080/user'
 appid= 'app_test_000000000000001'
 fr = open(r'd:\aa.csv','r+')
 fw = open(r'd:\bb.csv','w+')
-#fw = open('E:\Code\???????????????è??\??????????????è??\qikan_data\?????¨???.csv','w+')
+fwss = open(r'E:\\Code\???????????????è??\??????????????è??\qikan_data\????.csv','w+')
 for line in fr:
     user=line.split(',')
     nickname=user[0]
@@ -29,7 +30,7 @@ for line in fr:
     token=jsonresult['token']
     list0 =('%s,%s,%s,%s,%s,%s,%s\n') % (nickname,password,email,intro,website,userid,token)   
    
-    #更新用户信息 
+    #?¨???????ì???? 
     timestamp=int(time.time())
     plaintext=userid+'|'+str(timestamp)
     h=hmac.new('0123456789abcd0123456789'.encode('utf-8'),plaintext.encode('utf-8'),digestmod=hashlib.sha1)
@@ -46,3 +47,4 @@ for line in fr:
     fw.write(list0)
 fw.flush()
 fw.close()
+#db.getCollection('users').find({nickName:/Appuser/})
