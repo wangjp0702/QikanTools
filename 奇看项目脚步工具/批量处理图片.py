@@ -1,6 +1,6 @@
 import hashlib, hmac,json, urllib.request
 import HttpHandle,time
-url ='http://localhost:8080/user/displayImage'
+url ='http://123.57.206.48:8080/user/displayImage'
 
 appid= 'app_test_000000000000001'
 fr = open(r'd:\bb.csv','r+')

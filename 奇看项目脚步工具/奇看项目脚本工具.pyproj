@@ -32,6 +32,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="奇看项目脚本工具.py" />
+    <Compile Include="批量处理栏目图片.py" />
     <Compile Include="批量处理图片.py" />
     <Compile Include="批量处理栏目.py" />
     <Compile Include="批量注册.py">

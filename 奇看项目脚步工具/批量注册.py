@@ -1,17 +1,17 @@
 import hashlib, hmac,json, urllib.request
 import HttpHandle,time,sys
-sys.getdefaultencoding('utf-8')
+
 url ='http://localhost:8080/register'
-urluser='http://localhost:8080/user'
+urluser='http://123.57.206.48:8080/user'
 appid= 'app_test_000000000000001'
-fr = open(r'd:\aa.csv','r+')
+fr = open(r'd:\aaT.csv','r+')
 fw = open(r'd:\bb.csv','w+')
-fwss = open(r'E:\\Code\???????????????¨¨??\??????????????¨¨??\qikan_data\????.csv','w+')
+#fwss = open(r'E:\\Code\????????????????¡ì?¡ì??\???????????????¡ì?¡ì??\qikan_data\????.csv','w+')
 for line in fr:
-    user=line.split(',')
+    user=line.split('##')
     nickname=user[0]
     password=user[1]
-    email=user[2]
+    email=user[2].replace(' ','')
     intro=user[3]
     website=user[4].replace('\n','')
     accessKey =appid
@@ -30,7 +30,7 @@ for line in fr:
     token=jsonresult['token']
     list0 =('%s,%s,%s,%s,%s,%s,%s\n') % (nickname,password,email,intro,website,userid,token)   
    
-    #?¡§???????¨¬???? 
+    #???¨¬????????¡ì????? 
     timestamp=int(time.time())
     plaintext=userid+'|'+str(timestamp)
     h=hmac.new('0123456789abcd0123456789'.encode('utf-8'),plaintext.encode('utf-8'),digestmod=hashlib.sha1)

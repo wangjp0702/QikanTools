@@ -39,7 +39,7 @@ class Request:
         #req.add_header('Content-Type', 'multipart/form-data; boundary=%s' % boundary)
         #response = urllib.request.urlopen(req)
         headers = {'AccessKey': self.accessKey}
-        response=requests.put(self.url,files=files,headers=headers)
+        response=requests.post(self.url,files=files,headers=headers)
         
         return response.content.decode('UTF8')
        
