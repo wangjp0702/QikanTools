@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "奇看项目脚本工具", "奇看项目脚步工具\奇看项目脚本工具.pyproj", "{C889E387-9F42-47DD-B247-7DED537EE002}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "文章生成工具", "文章生成工具\文章生成工具.pyproj", "{E66927AC-DC9C-433A-94AB-2674CA54EBE7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,8 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{C889E387-9F42-47DD-B247-7DED537EE002}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C889E387-9F42-47DD-B247-7DED537EE002}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E66927AC-DC9C-433A-94AB-2674CA54EBE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E66927AC-DC9C-433A-94AB-2674CA54EBE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

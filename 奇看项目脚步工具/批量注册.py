@@ -1,11 +1,11 @@
 import hashlib, hmac,json, urllib.request
 import HttpHandle,time,sys
 
-url ='http://localhost:8080/register'
+url ='http://123.57.206.48:8080/register'
 urluser='http://123.57.206.48:8080/user'
 appid= 'app_test_000000000000001'
 fr = open(r'd:\aaT.csv','r+')
-fw = open(r'd:\bb.csv','w+')
+fw = open(r'd:\bbT.csv','w+')
 #fwss = open(r'E:\\Code\????????????????¡ì?¡ì??\???????????????¡ì?¡ì??\qikan_data\????.csv','w+')
 for line in fr:
     user=line.split('##')
