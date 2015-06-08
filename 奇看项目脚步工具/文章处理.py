@@ -13,40 +13,47 @@ appid= 'app_test_000000000000001'
 
 
 fr = open(r'D:\\qikan_data\\article\\1\1.txt','r+',-1,'utf-8')
-#fwss = open(r'E:\\Code\?????????????????━??━??\????????????????━??━??\qikan_data\????.csv','w+')
+#fwss = open(r'E:\\Code\?????????????????：???：???\????????????????：???：???\qikan_data\????.csv','w+')
 re_title = re.compile('<title>(.*)</title>')
 re_subtitle = re.compile('<subtitle>(.*)</subtitle>')
 re_cover = re.compile('<cover>(.*)</cover>')
-re_p = re.compile('<p>(.*)</p>')
+re_p = re.compile('<p>(.*)</P>')
 re_img = re.compile('<img>(.*)</img>')
-re_title = re.compile('<title>(.*)</title>')
-re_title = re.compile('<title>(.*)</title>')
+#re_title = re.compile('<title>(.*)</title>')
+#re_title = re.compile('<title>(.*)</title>')
 
 title=""
 subtitle=""
 creator=""
 cover=""
 content=""
+list=[]
 for line in fr:
     m=re.search(re_title,line)
     if(m !=None):
         title=m.group(1)
+        continue
     m=re.search(re_subtitle,line)
     if(m !=None):
         subtitle=m.group(1)
+        continue
     m=re.search(re_cover,line)
     if(m !=None):
         cover=m.group(1)
+        continue
     m=re.search(re_p,line)
     if(m !=None):
         text=m.group(1)
         r=getText(text)
-        content+=r
+        list.append(r)
+        continue
     m=re.search(re_img,line)
     if(m !=None):
         img=m.group(1)      
         r=getImg(img)
-        content+=r
-print (content)
+        list.append(r)
+        continue
+
+print (list)
 #db.getCollection('users').find({nickName:/Appuser/})
 
