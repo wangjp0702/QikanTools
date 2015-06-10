@@ -122,8 +122,8 @@ def updateFile(user,filepath,imgdir):
     data={"title":title,"subtitle":subtitle,"content":json.dumps(list,ensure_ascii=False),"converImageId":coverid}
     return json.dumps(data,ensure_ascii=False)
 
-config={'appid':'app_test_000000000000001','login':'http://123.57.206.48:8080/login','newitem':'http://123.57.206.48:8080/item','newitemresource':'http://123.57.206.48:8080/item/resource'}
-L = os.listdir( "D:\\qikan_data\\article" )
+config={'datapath':'D:\\qikan_data\\article','appid':'app_test_000000000000001','login':'http://123.57.206.48:8080/login','newitem':'http://123.57.206.48:8080/item','newitemresource':'http://123.57.206.48:8080/item/resource'}
+L = os.listdir(config['datapath'])
 email = re.compile('(.*)-(.*)')
 listUsers=[]
 for li in L:
@@ -138,10 +138,10 @@ for li in L:
         listUsers.append(user)
 
 for user in listUsers:
-    filedir="D:\\qikan_data\\article\\%s"%user.UserDir
+    filedir=("%s\\%s")%(config['datapath'],user.UserDir)
     fileList=os.listdir(filedir)
     for file in fileList:
-        filepath=('D:\\qikan_data\\article\\%s\\%s\\%s.txt')%(user.UserDir,file,file)   
-        imgdir=('D:\\qikan_data\\article\\%s\\%s\\image')%(user.UserDir,file)   
+        filepath=('%s\\%s\\%s\\%s.txt')%(config['datapath'],user.UserDir,file,file)   
+        imgdir=('%s\\%s\\%s\\image')%(config['datapath'],user.UserDir,file)   
         result=updateFile(user,filepath,imgdir)
         print(result)
