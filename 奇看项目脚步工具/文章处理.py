@@ -1,5 +1,4 @@
-# coding: UTF-8
-import hashlib, hmac,json, urllib.request
+ï»¿import hashlib, hmac,json, urllib.request
 import HttpHandle,time,sys, re, json, HttpHandle 
 from PIL import Image  
 def getImg(imgname):
@@ -66,18 +65,18 @@ def getText(text):
     return imgTag
 
 import sys
-reload(sys)
-sys.setdefaultencoding('gb2312')
+
 #url ='http://123.57.206.48:8080/register'
 #urluser='http://123.57.206.48:8080/user'
 #appid= 'app_test_000000000000001'
-path="ÎÒ"
+
 
 #fr2 = open(path.decode('gbk').encode('utf8'))
-
+fr2=open(r'D:\qikan_data\article\è¶…å½¢æ€è§†è§‰è‰ºæœ¯è§£æ\1.txt','r+',-1,'utf-8')
+for line in fr2:
+    print(line)
 fr = open(r'D:\\qikan_data\\article\\1\1.txt','r+',-1,'utf-8')
 fw = open(r'D:\\qikan_data\\article\\1\2.txt','w+')
-#fwss = open(r'E:\\Code\?????????????????¡§???¡§???\????????????????¡§???¡§???\qikan_data\????.csv','w+')
 re_title = re.compile('<title>(.*)</title>')
 re_subtitle = re.compile('<subtitle>(.*)</subtitle>')
 re_cover = re.compile('<cover>(.*)</cover>')

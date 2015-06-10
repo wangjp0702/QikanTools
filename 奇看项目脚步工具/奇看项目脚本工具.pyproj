@@ -6,7 +6,7 @@
     <ProjectGuid>c889e387-9f42-47dd-b247-7ded537ee002</ProjectGuid>
     <ProjectHome>
     </ProjectHome>
-    <StartupFile>文章处理.py</StartupFile>
+    <StartupFile>获取AccessKey.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -26,6 +26,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="HttpHandle.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Model.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="test.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="tt.py">
