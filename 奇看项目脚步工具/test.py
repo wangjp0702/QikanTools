@@ -120,8 +120,26 @@ def updateFile(user,filepath,imgdir):
             list.append(r)
             continue
     data={"title":title,"subtitle":subtitle,"content":json.dumps(list,ensure_ascii=False),"converImageId":coverid}
-    return json.dumps(data,ensure_ascii=False)
-
+    return data#json.dumps(data,ensure_ascii=False)
+def createItem(data):
+    appid=config["appid"]
+    userid=user.UserID
+    token=user.Token
+    timestamp=int(time.time())
+    plaintext=userid+'|'+str(timestamp)
+    h=hmac.new('0123456789abcd0123456789'.encode('utf-8'),plaintext.encode('utf-8'),digestmod=hashlib.sha1)
+    accessKey= appid+'|'+token+'|'+h.hexdigest()+'|'+str(timestamp) 
+    headers = { 'AccessKey' : accessKey, 'content-type':'application/json' }
+    values = data
+    url =config["newitem"]
+    http=HttpHandle.Request()
+    http.url=url
+    http.method='POST'
+    http.data=values
+    http.headers=headers
+    jsonresult=''
+    jsonresult=json.loads(http.RequestPost())
+    itemid=jsonresult['_id']
 config={'datapath':'D:\\qikan_data\\article','appid':'app_test_000000000000001','login':'http://123.57.206.48:8080/login','newitem':'http://123.57.206.48:8080/item','newitemresource':'http://123.57.206.48:8080/item/resource'}
 L = os.listdir(config['datapath'])
 email = re.compile('(.*)-(.*)')
@@ -144,4 +162,5 @@ for user in listUsers:
         filepath=('%s\\%s\\%s\\%s.txt')%(config['datapath'],user.UserDir,file,file)   
         imgdir=('%s\\%s\\%s\\image')%(config['datapath'],user.UserDir,file)   
         result=updateFile(user,filepath,imgdir)
+        createItem(result)
         print(result)
