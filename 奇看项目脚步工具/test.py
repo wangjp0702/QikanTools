@@ -1,5 +1,6 @@
 ﻿import os,re,Model,HttpHandle, json,time,hashlib, hmac
 from PIL import Image
+#图片处理
 def getImg(user,imgname,imgdir):
     imagePath=imgdir+'\\'+imgname
     image=Image.open(imagePath);
@@ -29,6 +30,7 @@ def getImg(user,imgname,imgdir):
     imgurl=jsonresult['url']
     imgTag={"resource_url":imgurl,"resource_description":{"type":1,"image_size":imginfo,"image_crop_rect":"0,0,"+imginfo, "image_width_rate":1}}
     return imgTag
+#封面图片处理
 def getCoverImgID(user,imgname,imgdir):
     imagePath=imgdir+'\\'+imgname
     image=Image.open(imagePath);
@@ -57,9 +59,11 @@ def getCoverImgID(user,imgname,imgdir):
     jsonresult=json.loads(http.RequestPostFileWithData())
     imgid=jsonresult['_id']
     return imgid
+#文字处理
 def getText(text):
     imgTag={"resource_description":{"type":2,"text":text,"text_alignment":0}}
     return imgTag
+#获取用户token
 def getUserInfo(user):
     url=config["login"]
     appid=config["appid"]
@@ -75,6 +79,7 @@ def getUserInfo(user):
     jsonresult=json.loads(http.RequestPost())
     user.UserID=jsonresult['_id']
     user.Token=jsonresult['token']
+#解析文章
 def updateFile(user,filepath,imgdir):
     
     fr = open(filepath,'r+',-1,'utf-8')
@@ -121,6 +126,7 @@ def updateFile(user,filepath,imgdir):
             continue
     data={"title":title,"subtitle":subtitle,"content":json.dumps(list,ensure_ascii=False),"converImageId":coverid}
     return data#json.dumps(data,ensure_ascii=False)
+#创建文章
 def createItem(data):
     appid=config["appid"]
     userid=user.UserID
@@ -148,6 +154,7 @@ for li in L:
     m=re.search(email,li)
     if(m !=None):
         user=Model.User()
+        
         email=m.group(1)
         user.UserDir=m.group()
         user.Email=email

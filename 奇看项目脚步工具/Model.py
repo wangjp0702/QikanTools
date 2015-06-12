@@ -4,3 +4,4 @@ class User:
     Token=""
     Password=""
     UserDir=""
+    _q=""
