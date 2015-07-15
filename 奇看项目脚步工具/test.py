@@ -1,4 +1,4 @@
-﻿import os,re,Model,HttpHandle, json,time,hashlib, hmac
+﻿import os,re,Model,HttpHandle, json,time,hashlib, hmac, traceback
 from PIL import Image
 #图片处理
 def getImg(user,imgname,imgdir):
@@ -63,6 +63,10 @@ def getCoverImgID(user,imgname,imgdir):
 def getText(text):
     imgTag={"resource_description":{"type":2,"text":text,"text_alignment":0}}
     return imgTag
+#小标题处理
+def getTitleText(text):
+    titleTag={"resource_description":{"type":3,"text":text,"text_alignment":0}}
+    return titleTag
 #获取用户token
 def getUserInfo(user):
     url=config["login"]
@@ -88,7 +92,7 @@ def updateFile(user,filepath,imgdir):
     re_cover = re.compile('<cover>(.*)</cover>')
     re_p = re.compile('<p>(.*)</p>')
     re_img = re.compile('<img>(.*)</img>')
-
+    re_stitle = re.compile('<stitle>(.*)</stitle>')
     title=""
     subtitle=""
     creator=""
@@ -116,6 +120,12 @@ def updateFile(user,filepath,imgdir):
         if(m !=None):
             text=m.group(1)
             r=getText(text)
+            list.append(r)
+            continue
+        m=re.search(re_stitle,line)
+        if(m !=None):
+            text=m.group(1)
+            r=getTitleText(text)
             list.append(r)
             continue
         m=re.search(re_img,line)
@@ -146,28 +156,42 @@ def createItem(data):
     jsonresult=''
     jsonresult=json.loads(http.RequestPost())
     itemid=jsonresult['_id']
+    return itemid
 config={'datapath':'D:\\qikan_data\\article','appid':'app_test_000000000000001','login':'http://123.57.206.48:8080/login','newitem':'http://123.57.206.48:8080/item','newitemresource':'http://123.57.206.48:8080/item/resource'}
 L = os.listdir(config['datapath'])
-email = re.compile('(.*)-(.*)')
+re_email = re.compile('(.*)-(.*)')
 listUsers=[]
-for li in L:
-    m=re.search(email,li)
-    if(m !=None):
-        user=Model.User()
-        
-        email=m.group(1)
-        user.UserDir=m.group()
-        user.Email=email
-        user.Password='123456'
-        getUserInfo(user)
-        listUsers.append(user)
+try:
 
-for user in listUsers:
-    filedir=("%s\\%s")%(config['datapath'],user.UserDir)
-    fileList=os.listdir(filedir)
-    for file in fileList:
-        filepath=('%s\\%s\\%s\\%s.txt')%(config['datapath'],user.UserDir,file,file)   
-        imgdir=('%s\\%s\\%s\\image')%(config['datapath'],user.UserDir,file)   
-        result=updateFile(user,filepath,imgdir)
-        createItem(result)
-        print(result)
+    for li in L:
+        m=re.search(re_email,li)
+        if(m !=None):
+            user=Model.User()
+        
+            email=m.group(1)
+            user.UserDir=m.group()
+            user.Email=email
+            user.Password='123456'
+            getUserInfo(user)
+            listUsers.append(user)
+
+    for user in listUsers:
+        filedir=("%s\\%s")%(config['datapath'],user.UserDir)
+        fileList=os.listdir(filedir)
+        for file in fileList:
+            filepath=('%s\\%s\\%s\\%s.txt')%(config['datapath'],user.UserDir,file,file)   
+            imgdir=('%s\\%s\\%s\\image')%(config['datapath'],user.UserDir,file)   
+            result=updateFile(user,filepath,imgdir)
+            itemid=createItem(result)
+            successlog='文章id:%s 用户:%s 文章目录:%s 文章:%s 路径:%s 参数:%s\n'%(itemid,user.Email,user.UserDir,file,filepath,'')
+            print(filepath)
+            f = open(r'D:\\qikan_data\\article\\success.txt','a')
+            f.writelines(successlog)
+            f.writelines('--------------------------------------------------------------------\n')
+        f.flush()
+        f.close()
+except:
+    f = open(r'D:\\qikan_data\\article\\log.txt','a')
+    traceback.print_exc(file=f)
+    f.flush()
+    f.close()

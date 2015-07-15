@@ -17,3 +17,4 @@ if __name__=='__main__':
     #print(type(int2))
     print (b)
     print (name and ss)
+    print (str.__dir__)

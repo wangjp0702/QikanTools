@@ -6,8 +6,8 @@ urluser='http://123.57.206.48:8080/user'
 appid= 'app_test_000000000000001'
 
 
-userid='557225a7883c06080947864d'
-token='5fd8669fdb82b1fb5b7cd53dc1aafa64e721267db6c38b3cd11545c27b6248bfd24fa54c6f662f2a'
+userid='5570442b6c857fac09486812'
+token='a0d45a92588a3f3f492c739e55116e5d1a7ed48777dad109d93b02bdd6a0956b0e8adb0cc461a6dd'
 timestamp=int(time.time())
 plaintext=userid+'|'+str(timestamp)
 h=hmac.new('0123456789abcd0123456789'.encode('utf-8'),plaintext.encode('utf-8'),digestmod=hashlib.sha1)
