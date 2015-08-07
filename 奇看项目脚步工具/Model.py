@@ -1,5 +1,5 @@
 class User:
-    Email=""
+    UserName=""
     UserID=""
     Token=""
     Password=""

@@ -6,7 +6,7 @@
     <ProjectGuid>c889e387-9f42-47dd-b247-7ded537ee002</ProjectGuid>
     <ProjectHome>
     </ProjectHome>
-    <StartupFile>获取AccessKey.py</StartupFile>
+    <StartupFile>文章导入.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -34,13 +34,15 @@
     <Compile Include="t.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="test.py">
+    <Compile Include="文章导入.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="tt.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="奇看项目脚本工具.py" />
+    <Compile Include="批量处理推荐用户.py" />
+    <Compile Include="批量处理图片%28背景%29.py" />
     <Compile Include="批量处理栏目图片.py" />
     <Compile Include="批量处理图片.py" />
     <Compile Include="批量处理栏目.py" />

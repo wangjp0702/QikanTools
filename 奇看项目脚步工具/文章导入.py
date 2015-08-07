@@ -12,10 +12,10 @@ def getImg(user,imgname,imgdir):
     token=user.Token
     timestamp=int(time.time())
     plaintext=userid+'|'+str(timestamp)
-    h=hmac.new('0123456789abcd0123456789'.encode('utf-8'),plaintext.encode('utf-8'),digestmod=hashlib.sha1)
+    h=hmac.new('7cYooWzTzNLWGsCtddhPTgCt'.encode('utf-8'),plaintext.encode('utf-8'),digestmod=hashlib.sha1)
     accessKey= appid+'|'+token+'|'+h.hexdigest()+'|'+str(timestamp) 
 
-    values = {'resourceType':1}
+    values ={}
     url =config["newitemresource"]
     http=HttpHandle.Request()
     http.url=url
@@ -26,7 +26,7 @@ def getImg(user,imgname,imgdir):
     http.contentType='image/'+image.format
     http.accessKey=accessKey
     jsonresult=''
-    jsonresult=json.loads(http.RequestPostFileWithData())
+    jsonresult=json.loads(http.RequestPostFile())
     imgurl=jsonresult['url']
     imgTag={"resource_url":imgurl,"resource_description":{"type":1,"image_size":imginfo,"image_crop_rect":"0,0,"+imginfo, "image_width_rate":1}}
     return imgTag
@@ -42,10 +42,10 @@ def getCoverImgID(user,imgname,imgdir):
     token=user.Token
     timestamp=int(time.time())
     plaintext=userid+'|'+str(timestamp)
-    h=hmac.new('0123456789abcd0123456789'.encode('utf-8'),plaintext.encode('utf-8'),digestmod=hashlib.sha1)
+    h=hmac.new('7cYooWzTzNLWGsCtddhPTgCt'.encode('utf-8'),plaintext.encode('utf-8'),digestmod=hashlib.sha1)
     accessKey= appid+'|'+token+'|'+h.hexdigest()+'|'+str(timestamp) 
 
-    values = {'resourceType':1}
+    values = {}
     url =config["newitemresource"]
     http=HttpHandle.Request()
     http.url=url
@@ -56,8 +56,8 @@ def getCoverImgID(user,imgname,imgdir):
     http.contentType='image/'+image.format
     http.accessKey=accessKey
     jsonresult=''
-    jsonresult=json.loads(http.RequestPostFileWithData())
-    imgid=jsonresult['_id']
+    jsonresult=json.loads(http.RequestPostFile())
+    imgid=jsonresult['id']
     return imgid
 #文字处理
 def getText(text):
@@ -72,7 +72,7 @@ def getUserInfo(user):
     url=config["login"]
     appid=config["appid"]
     accessKey =appid
-    values = {"email":user.Email,"password":user.Password}
+    values = {"username":user.UserName,"password":user.Password}
     headers = { 'appid' : accessKey, 'content-type':'application/json' }
   
     http=HttpHandle.Request()
@@ -81,7 +81,7 @@ def getUserInfo(user):
     http.headers=headers
     http.data=values
     jsonresult=json.loads(http.RequestPost())
-    user.UserID=jsonresult['_id']
+    user.UserID=jsonresult['id']
     user.Token=jsonresult['token']
 #解析文章
 def updateFile(user,filepath,imgdir):
@@ -134,7 +134,7 @@ def updateFile(user,filepath,imgdir):
             r=getImg(user,img,imgdir)
             list.append(r)
             continue
-    data={"title":title,"subtitle":subtitle,"content":json.dumps(list,ensure_ascii=False),"converImageId":coverid}
+    data={"title":title,"subTitle":subtitle,"content":json.dumps(list,ensure_ascii=False),"coverImageId":coverid,"status":1}
     return data#json.dumps(data,ensure_ascii=False)
 #创建文章
 def createItem(data):
@@ -143,7 +143,7 @@ def createItem(data):
     token=user.Token
     timestamp=int(time.time())
     plaintext=userid+'|'+str(timestamp)
-    h=hmac.new('0123456789abcd0123456789'.encode('utf-8'),plaintext.encode('utf-8'),digestmod=hashlib.sha1)
+    h=hmac.new('7cYooWzTzNLWGsCtddhPTgCt'.encode('utf-8'),plaintext.encode('utf-8'),digestmod=hashlib.sha1)
     accessKey= appid+'|'+token+'|'+h.hexdigest()+'|'+str(timestamp) 
     headers = { 'AccessKey' : accessKey, 'content-type':'application/json' }
     values = data
@@ -155,9 +155,9 @@ def createItem(data):
     http.headers=headers
     jsonresult=''
     jsonresult=json.loads(http.RequestPost())
-    itemid=jsonresult['_id']
+    itemid=jsonresult['id']
     return itemid
-config={'datapath':'D:\\qikan_data\\article','appid':'app_test_000000000000001','login':'http://123.57.206.48:8080/login','newitem':'http://123.57.206.48:8080/item','newitemresource':'http://123.57.206.48:8080/item/resource'}
+config={'datapath':'D:\\qikan_data\\article','appid':'app.qikan.ios.001','login':'http://dev.qikan.avosapps.com/api/login','newitem':'http://dev.qikan.avosapps.com/api/story','newitemresource':'http://dev.qikan.avosapps.com/api/story/resource'}
 L = os.listdir(config['datapath'])
 re_email = re.compile('(.*)-(.*)')
 listUsers=[]
@@ -168,9 +168,9 @@ try:
         if(m !=None):
             user=Model.User()
         
-            email=m.group(1)
+            username=m.group(2)
             user.UserDir=m.group()
-            user.Email=email
+            user.UserName=username
             user.Password='123456'
             getUserInfo(user)
             listUsers.append(user)
@@ -183,7 +183,7 @@ try:
             imgdir=('%s\\%s\\%s\\image')%(config['datapath'],user.UserDir,file)   
             result=updateFile(user,filepath,imgdir)
             itemid=createItem(result)
-            successlog='文章id:%s 用户:%s 文章目录:%s 文章:%s 路径:%s 参数:%s\n'%(itemid,user.Email,user.UserDir,file,filepath,'')
+            successlog='文章id:%s 用户:%s 文章目录:%s 文章:%s 路径:%s 参数:%s\n'%(itemid,user.UserName,user.UserDir,file,filepath,'')
             print(filepath)
             f = open(r'D:\\qikan_data\\article\\success.txt','a')
             f.writelines(successlog)

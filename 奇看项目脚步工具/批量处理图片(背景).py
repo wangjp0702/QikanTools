@@ -1,6 +1,6 @@
 ﻿import hashlib, hmac,json, urllib.request
 import HttpHandle,time
-url ='http://dev.qikan.avosapps.com/api/user/displayImage'
+url ='http://dev.qikan.avosapps.com/api/user/backgroundimage'
 #ÐÞ¸ÄÍ·Ïñ
 appid= 'app.qikan.ios.001'
 fr = open(r'd:\bbT.csv','r+')
@@ -24,8 +24,8 @@ for line in fr:
     http.method='PUT'
     http.headers=headers
     http.data=values
-    http.filename=img1
-    http.filepath='D:\\qikan_data\\headImg\\'+img1
+    http.filename=img2
+    http.filepath='D:\\qikan_data\\backgroundImg\\'+img2
     http.contentType='image/jpg'
     http.accessKey=accessKey
     jsonresult=''

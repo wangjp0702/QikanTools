@@ -3,13 +3,13 @@ import HttpHandle,time,sys
 
 url ='http://123.57.206.48:8080/register'
 urluser='http://123.57.206.48:8080/user'
-appid= 'app_test_000000000000001'
+appid= 'app.qikan.ios.001'
 
 
-userid='5570442b6c857fac09486812'
-token='a0d45a92588a3f3f492c739e55116e5d1a7ed48777dad109d93b02bdd6a0956b0e8adb0cc461a6dd'
+userid='55c450d200b0b291197bd9d1'
+token='098af9b41357e568838cb4a10b02e0b894a1ddaff7afb4666e849828fc453adec67121aa0ecd69ce'
 timestamp=int(time.time())
 plaintext=userid+'|'+str(timestamp)
-h=hmac.new('0123456789abcd0123456789'.encode('utf-8'),plaintext.encode('utf-8'),digestmod=hashlib.sha1)
+h=hmac.new('7cYooWzTzNLWGsCtddhPTgCt'.encode('utf-8'),plaintext.encode('utf-8'),digestmod=hashlib.sha1)
 accessKey= appid+'|'+token+'|'+h.hexdigest()+'|'+str(timestamp) 
 print(accessKey)

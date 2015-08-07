@@ -12,7 +12,7 @@ values = {'name' : 'WHY',
          'language' : 'Python',
          'ie' : 'utf-8',
          'wd' : 'python' }
-headers = { 'accessKey' : accessKey }
+headers = { 'accessKey' : accessKey } 
 
 
 #http=HttpHandle.Request()

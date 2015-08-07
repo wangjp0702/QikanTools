@@ -40,10 +40,12 @@ class Request:
         #response = urllib.request.urlopen(req)
         headers = {'AccessKey': self.accessKey }
 
-    
-        response=requests.post(self.url,files=files,headers=headers)
-        
-        return response.content.decode('UTF8')
+        if(self.method=='PUT'):
+            response=requests.put(self.url,files=files,headers=headers)
+            return response.content.decode('UTF8')
+        else:
+            response=requests.post(self.url,files=files,headers=headers)
+            return response.content.decode('UTF8')
     def RequestPostFileWithData( self ):
         files = {'file':(self.filename, open(r''+self.filepath+'','rb'),self.contentType)}
         #boundary = '----------%s' % hex(int(time.time() * 1000))
