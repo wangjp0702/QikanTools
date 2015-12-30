@@ -6,7 +6,7 @@
     <ProjectGuid>c889e387-9f42-47dd-b247-7ded537ee002</ProjectGuid>
     <ProjectHome>
     </ProjectHome>
-    <StartupFile>文章导入.py</StartupFile>
+    <StartupFile>cookie处理.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -34,6 +34,7 @@
     <Compile Include="t.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="cookie处理.py" />
     <Compile Include="文章导入.py">
       <SubType>Code</SubType>
     </Compile>

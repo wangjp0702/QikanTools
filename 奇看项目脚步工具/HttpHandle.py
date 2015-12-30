@@ -10,9 +10,11 @@ class Request:
     accessKey=''
     contentType=''
     def RequestGet( self ):
-        req = urllib.request.Request(self.url,headers=self.headers,method=self.method)
-        response = urllib.request.urlopen(req)
-        return response.read().decode('UTF8')
+        #req = urllib.request.Request(self.url,headers=self.headers,method=self.method)
+       
+        #response = urllib.request.urlopen(req)
+        response= requests.get(self.url)
+        return response.content.decode('UTF8')
     def RequestPost( self ):
         data =json.dumps(self.data)
         data = data.encode('utf-8')
