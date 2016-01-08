@@ -1,6 +1,11 @@
 ﻿import hashlib, hmac,json, urllib.request
 import HttpHandle,time,sys, re, json, HttpHandle 
-from PIL import Image  
+from PIL import Image
+import requests
+import io
+import imghdr
+#imghdr.what()
+
 def getImg(imgname):
     imagePath='D:\\qikan_data\\article\\1\\image\\'+imgname
     image=Image.open(imagePath);
