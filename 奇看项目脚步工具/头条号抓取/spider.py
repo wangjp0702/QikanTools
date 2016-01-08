@@ -81,6 +81,7 @@ for i in range(1,20):
 
         date=articlefull.find(class_='time').string
         entry={
+            'titleId':title,
             'title':title,
             'content':parseContent(content)[0],
             'pnum':len(content.findAll('p')),
