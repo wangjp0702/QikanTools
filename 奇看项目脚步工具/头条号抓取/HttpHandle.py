@@ -9,7 +9,6 @@ class Request:
     filepath=''
     accessKey=''
     contentType=''
-    content=''
     def RequestGet( self ):
         #req = urllib.request.Request(self.url,headers=self.headers,method=self.method)
        

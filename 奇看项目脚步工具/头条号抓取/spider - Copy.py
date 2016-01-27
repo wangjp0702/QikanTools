@@ -68,45 +68,7 @@ db = con.master
 
 driver =webdriver.PhantomJS(executable_path='D:\Python34\Scripts\phantomjs.exe')
 
-brandlist=['http://toutiao.com/m5467016927/',
-'http://toutiao.com/m5500049658/',
-'http://toutiao.com/m3097973892/',
-'http://toutiao.com/m5576294752/',
-'http://toutiao.com/m5575391553/',
-'http://toutiao.com/m4175980696/',
-'http://toutiao.com/m3690317321/',
-'http://toutiao.com/m3495086337/',
-'http://toutiao.com/m5724029055/',
-'http://toutiao.com/m3470318180/',
-'http://toutiao.com/m3936133973/',
-'http://toutiao.com/m4188201781/',
-'http://toutiao.com/m5768061262/',
-'http://toutiao.com/m5424657091/',
-'http://toutiao.com/m4200813564/',
-'http://toutiao.com/m3676970251/',
-'http://toutiao.com/m3235365573/',
-'http://toutiao.com/m5496019420/',
-'http://toutiao.com/m5561796074/',
-'http://toutiao.com/m4348690347/',
-'http://toutiao.com/m4807800091/',
-'http://toutiao.com/m3949845778/',
-'http://toutiao.com/m4198490663/',
-'http://toutiao.com/m3772891261/',
-'http://toutiao.com/m4481608316/',
-'http://toutiao.com/m4661806847/',
-'http://toutiao.com/m5511045302/',
-'http://toutiao.com/m3204931211/',
-'http://toutiao.com/m5543314888/',
-'http://toutiao.com/m4719903845/',
-'http://toutiao.com/m5826599058/',
-'http://toutiao.com/m5746291277/',
-'http://toutiao.com/m4697772973/',
-'http://toutiao.com/m3935330325/',
-'http://toutiao.com/m3736738016/',
-'http://toutiao.com/m4534708892/',
-'http://toutiao.com/m5546860604/',
-'http://toutiao.com/m3615183336/',
-'http://toutiao.com/m5761133356/',
+brandlist=[
 'http://toutiao.com/m5495741207/',
 'http://toutiao.com/m4241104536/'
 ]
@@ -115,8 +77,8 @@ for brand in brandlist:
 
     for i in range(1,20):
         try:
-            driver.get('%sp%s'%(brand,i))
-            result=driver.page_source
+            response= requests.get('%sp%s'%(brand,i))
+            result=response.content.decode('UTF8')
             soup = BeautifulSoup(result)
             brandname=soup.find(class_='profile_name').find('a').string
             count=0
@@ -128,8 +90,10 @@ for brand in brandlist:
                 url=article.find(class_='pin-content').find('h3').find('a').get('href')
                 if(db.articles.find({"titleurl":url}).count()>0):
                     continue
-                driver.get(url)
-                articlefull=driver.page_source
+                #driver.get(url)
+                #articlefull=driver.page_source
+                response= requests.get(url)
+                articlefull=response.content.decode('UTF8')
                 articlefull = BeautifulSoup(articlefull)
                 title=articlefull.find(class_='title').find('h1').string
                 content=articlefull.find(class_='article-content')

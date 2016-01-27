@@ -6,7 +6,7 @@
     <ProjectGuid>c889e387-9f42-47dd-b247-7ded537ee002</ProjectGuid>
     <ProjectHome>
     </ProjectHome>
-    <StartupFile>头条号抓取\spider.py</StartupFile>
+    <StartupFile>cookie处理.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -35,7 +35,20 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="cookie处理.py" />
+    <Compile Include="头条号抓取\HttpHandle.py" />
+    <Compile Include="头条号抓取\Model.py" />
+    <Compile Include="头条号抓取\spider - Copy.py" />
     <Compile Include="头条号抓取\spider.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="头条号抓取\批量处理图片.py" />
+    <Compile Include="头条号抓取\文章导入.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="头条号抓取\更新头像.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="头条号抓取\用户注册.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="文章导入.py">
